@@ -1,0 +1,20 @@
+## These lines of codes reproduce figure.2
+
+## Load the required libraries
+library(rcarbon)
+library(ggplot2)
+
+## Read the SPD that has been generated for each individual site
+site1<-read.csv("C:/site1.csv",
+                sep = ",")
+## Deriving the calender year for "geom_vline(xintercept = ") was done by retrieving the maximum density value and its corresponding year by filtering the two columns in MS Excel.
+
+## Now plot the Summed probability distribution
+site1<-ggplot(data=site1, aes(x=grid.calBP, y=grid.PrDens))+
+  geom_area(fill="#D3D5D0")+
+  scale_x_reverse()+
+  scale_y_continuous(expand=c(0,0),
+                     position="right")+
+  geom_vline(xintercept = 6945)+
+  labs(x=NULL,y="site1")+
+  theme_minimal()
